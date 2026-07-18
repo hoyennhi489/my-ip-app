@@ -20,5 +20,3 @@ A simple React application that displays IP information using reusable component
 ## API
 
 https://api.miip.my/
-
-> Currently using fake data. API integration will be added in the next stage.
