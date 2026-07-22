@@ -48,3 +48,9 @@ body {
 .info-row p {
   font-size: 18px;
 }
+
+button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
