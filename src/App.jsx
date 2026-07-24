@@ -9,14 +9,6 @@ function App() {
     cc: "",
   });
 
-  useEffect(() => {
-    fetch("https://api.miip.my/")
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
-
   const fakeIPs = [
     {
       ip: "2405:4803:ccc5:470:a136:b7a:b11:3d46",
@@ -45,14 +37,35 @@ function App() {
     },
   ];
 
+  function realMode() {
+    fetch("https://api.miip.my/")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      });
+  }
+
   function randomMode() {
     const randomIndex = Math.floor(Math.random() * fakeIPs.length);
+
+    if (fakeIPs[randomIndex].ip === data.ip) {
+      return randomMode();
+    }
+
     setData(fakeIPs[randomIndex]);
   }
+
+  useEffect(() => {
+    realMode();
+  }, []);
 
   return (
     <div className="app">
       <Header />
+
+      <button onClick={realMode}>
+        Real Mode
+      </button>
 
       <button onClick={randomMode}>
         Random Mode
